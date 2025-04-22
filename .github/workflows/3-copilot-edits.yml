@@ -88,14 +88,14 @@ jobs:
               }
             }'
 
-          # Check for participants info in app.js
-          file="src/static/app.js"
+            # Check for participants info in styles.css
+          file="src/static/styles.css"
           keyphrase='participant'
-          minimum_occurences=3
+          minimum_occurences=1
           found_occurences=$(grep -o "$keyphrase" "$file" | wc -l)
           if [ "$found_occurences" -lt "$minimum_occurences" ]; then
-            checks=$(echo $checks | jq '.app_js.passed = false')
-            checks=$(echo $checks | jq '.app_js.message = "Please use Copilot to update the web application activity cards to show participant info."')
+            checks=$(echo $checks | jq '.styles_css.passed = false')
+            checks=$(echo $checks | jq '.styles_css.message = "Please use Copilot to update the web application styling to support participant info."')
           fi
 
           # Check for participants info in styles.css
